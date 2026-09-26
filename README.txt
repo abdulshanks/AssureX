@@ -1,40 +1,77 @@
-ASSUREX SPYDER STARTER - 23 September 2026
+ASSUREX CLAIM ENGINE
+Team setup guide — 26 September 2026
 
-This is a reproducible teaching example, not a finished competition submission.
+WHAT ASSUREX DOES
+AssureX helps assess product warranty claims. A customer enters claim
+details and can scan a receipt. The backend checks warranty facts and
+uses a trained Python model to recommend Valid Claim, Invalid Claim,
+or Manual Review. A Google Teachable Machine (GTM) image model can
+also score a generated claim card. Members can log in and review
+claims that need a human decision.
 
-INSTALL (Spyder's IPython Console; use the Python interpreter running Spyder):
-    %pip install pandas scikit-learn pillow joblib
+This is a competition prototype. Its training data and warranty rules
+are synthetic; model scores are not proof of real-world accuracy.
 
-If your Spyder version does not support %pip, open Anaconda Prompt and run:
-    conda install pandas scikit-learn pillow joblib
+PROJECT FOLDERS
+backend/     Flask API, SQLite code, OCR, policies, and GTM model
+frontend/    React and Vite website
+output/      Generated datasets and trained Python model
+01_generate_dataset.py       Generates synthetic claims and cards
+02_train_python_model.py     Trains the Python claim model
+CLAIM_FIELDS.md              Claim field descriptions
 
-RUN:
-1. Keep 01_generate_dataset.py and 02_train_python_model.py in the same folder.
-2. Open 01_generate_dataset.py in Spyder. Press F5.
-3. Inspect output/all_claims.csv and output/train.csv.
-4. Inspect output/cards/train/Valid Claim/ and the other two classes.
-5. Open 02_train_python_model.py and press F5.
-6. Inspect console metrics and output/assurex_python_model.joblib.
+BEFORE RUNNING
+Install Python, Node.js, and Tesseract OCR. The SQLite database and
+backend secret key are local files and are not included in GitHub.
 
-ROWS AND IMAGES:
-One Claim ID is one set of warranty facts and one label in the CSV.
-Train: 1,050 rows, two card variants per row = 2,100 training images.
-Validation: 225 rows and 225 separate cards.
-Test: 225 rows and 225 separate cards.
-For example AX-00001_v1.png and AX-00001_v2.png show facts from the same
-AX-00001 row. Both remain in train; they are not two separate claims.
-The class is stored in the CSV and used to arrange training images into
-folders. The class answer is deliberately absent from the visible card.
+BACKEND SETUP
+1. Open a terminal in the main AssureX folder.
+2. Install the Python packages used by the backend. Check the imports
+   in backend/app.py and the other backend files if an import is missing.
+3. Run:
+       python backend/app.py
+4. The Flask API should start at http://127.0.0.1:5000
+5. Check http://127.0.0.1:5000/api/policies
 
-GTM:
-Create an Image Project with three classes. Upload only images in
-output/cards/train/Valid Claim, .../Invalid Claim, .../Manual Review.
-Train, then test using validation cards you did not upload for training.
-Export the trained model and labels. Integrate actual inference in the app.
+FRONTEND SETUP
+Open a second terminal and run:
+    cd frontend
+    npm install
+    npm run dev
 
-IMPORTANT LIMITS:
-The sample label rules are deliberately simple. Synthetic test accuracy may
-look excellent because generated scenarios follow these rules. Extend scenario
-diversity, inspect errors and explain that this is not real-world validation.
-You still need GTM evidence, OCR, policy files, 30 unseen comparison claims,
-application integration, security, reviewer workflow and SRS documentation.
+Open the Local URL printed by Vite, usually http://localhost:5173
+On Windows PowerShell, use npm.cmd instead of npm if script execution
+is blocked.
+
+CURRENT PAGES
+Home, Member Login, Dashboard, New Claim, Claim Result,
+Claim History, Review Dashboard, and Reports.
+
+CURRENT BACKEND FEATURES
+- Claim analysis using the trained Python model and warranty rules
+- SQLite claim storage and duplicate invoice detection
+- Member login and manual review workflow
+- Receipt image/PDF OCR with fields requiring user confirmation
+- Basic (12 months), Standard (24 months), Extended (36 months) policies
+- GTM model integration for claim card image scores
+
+IMPORTANT API ROUTES
+GET  /api/policies
+POST /api/claims/analyze
+POST /api/documents/scan
+
+See backend/app.py for the exact login, claim history, review, and GTM
+routes and their request formats. Do not guess route names in React.
+
+WORK STILL TO COMPLETE
+- Connect every React page to the corresponding backend route
+- Finish and test the receipt-to-claim user flow
+- Compare the Python and GTM models on 30 unseen claims
+- Complete reports, end-to-end testing, and competition documentation
+
+TEAM WORKFLOW
+Before starting work: git pull
+After changes: git add ., git commit -m "Describe changes", git push
+Tell teammates which files you are editing to avoid conflicting changes.
+Never commit passwords, backend/.secret_key, the SQLite database,
+node_modules, or real customer receipts.
