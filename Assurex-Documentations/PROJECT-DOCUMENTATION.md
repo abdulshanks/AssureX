@@ -10,9 +10,9 @@ It also contains the logic for generating Claim Summary Cards.
 
 Trains and compares three machine-learning classification algorithms:
 
-* Logistic Regression
-* Random Forest
-* Extra Trees
+- Logistic Regression
+- Random Forest
+- Extra Trees
 
 The best model based on validation macro F1 is selected and saved.
 
@@ -38,18 +38,18 @@ It provides the API endpoints used by the system.
 
 The application:
 
-* Starts the Flask server
-* Creates the SQLite database tables
-* Handles claim analysis
-* Handles member login
-* Handles logout
-* Retrieves claims
-* Handles manual review
-* Processes uploaded documents
-* Provides warranty policies
-* Generates Claim Summary Cards
-* Receives GTM predictions
-* Serves the GTM model files
+- Starts the Flask server
+- Creates the SQLite database tables
+- Handles claim analysis
+- Handles member login
+- Handles logout
+- Retrieves claims
+- Handles manual review
+- Processes uploaded documents
+- Provides warranty policies
+- Generates Claim Summary Cards
+- Receives GTM predictions
+- Serves the GTM model files
 
 The Flask application uses a local secret key stored outside the public source code.
 
@@ -73,13 +73,13 @@ The claim is passed to the claim-analysis logic.
 
 The result contains information such as:
 
-* Python prediction
-* Python probabilities
-* Final recommendation
-* Reasons for the recommendation
-* Calculated warranty facts
-* Policy information
-* Claim ID
+- Python prediction
+- Python probabilities
+- Final recommendation
+- Reasons for the recommendation
+- Calculated warranty facts
+- Policy information
+- Claim ID
 
 ⸻
 
@@ -97,14 +97,14 @@ The module calculates information that should not be entered manually by the use
 
 Examples include:
 
-* Warranty expiry date
-* Remaining warranty days
-* Product age
-* Fault-to-claim interval
-* Repair-to-purchase interval
-* Serial-number match
-* Duplicate indicator
-* Date contradiction indicator
+- Warranty expiry date
+- Remaining warranty days
+- Product age
+- Fault-to-claim interval
+- Repair-to-purchase interval
+- Serial-number match
+- Duplicate indicator
+- Date contradiction indicator
 
 The model then produces probabilities for:
 
@@ -120,10 +120,10 @@ The rule engine independently evaluates the claim.
 
 The prototype uses the following sample policies:
 
-Policy	Warranty
-Basic Cover	12 months
-Standard Cover	24 months
-Extended Cover	36 months
+Policy Warranty
+Basic Cover 12 months
+Standard Cover 24 months
+Extended Cover 36 months
 
 These policies are defined in:
 
@@ -221,8 +221,8 @@ Uses randomized decision trees to produce an ensemble classifier.
 The validation macro-F1 results stored in the project are:
 
 Logistic Regression: 0.915371
-Random Forest:       0.928686
-Extra Trees:         0.928686
+Random Forest: 0.928686
+Extra Trees: 0.928686
 
 The selected model is:
 
@@ -325,9 +325,9 @@ with:
 
 The generated dataset is separated into:
 
-Training:   1,050 claims
-Validation:   225 claims
-Testing:      225 claims
+Training: 1,050 claims
+Validation: 225 claims
+Testing: 225 claims
 
 The split is stratified so that the classes remain balanced.
 
@@ -388,23 +388,23 @@ The cards provide a visual representation of claim facts.
 
 The card displays information such as:
 
-* Product category
-* Fault type
-* Product age
-* Warranty duration
-* Warranty status
-* Receipt status
-* Serial status
-* Damage
-* Repair history
-* Document status
-* Duplicate status
-* Date consistency
-* Purchase date
-* Claim date
-* Fault date
-* Repair date
-* Warranty expiry date
+- Product category
+- Fault type
+- Product age
+- Warranty duration
+- Warranty status
+- Receipt status
+- Serial status
+- Damage
+- Repair history
+- Document status
+- Duplicate status
+- Date consistency
+- Purchase date
+- Claim date
+- Fault date
+- Repair date
+- Warranty expiry date
 
 The Claim Summary Card does not display the known claim class.
 
@@ -464,16 +464,16 @@ POST /api/claims/<claim_id>/gtm-result
 
 The backend validates that the three probabilities are:
 
-* Numeric
-* Between 0 and 1
-* Approximately sum to 1
+- Numeric
+- Between 0 and 1
+- Approximately sum to 1
 
 The stored GTM information includes:
 
-* GTM probabilities
-* GTM prediction
-* GTM model version
-* Whether the Python and GTM predictions disagree
+- GTM probabilities
+- GTM prediction
+- GTM model version
+- Whether the Python and GTM predictions disagree
 
 ⸻
 
@@ -487,10 +487,10 @@ backend/receipt_ocr.py
 
 The OCR system uses:
 
-* PyTesseract
-* Tesseract OCR
-* Pillow
-* PyMuPDF
+- PyTesseract
+- Tesseract OCR
+- Pillow
+- PyMuPDF
 
 Supported files are:
 
@@ -616,9 +616,9 @@ Rejected
 
 The database stores:
 
-* Review status
-* Reviewer ID
-* Review note
+- Review status
+- Reviewer ID
+- Review note
 
 ⸻
 
@@ -717,14 +717,14 @@ POST /api/claims/analyze
 
 The sample includes information such as:
 
-* Phone product
-* Battery fault
-* Purchase date
-* Fault date
-* Warranty duration
-* Serial numbers
-* Invoice number
-* Receipt availability
+- Phone product
+- Battery fault
+- Purchase date
+- Fault date
+- Warranty duration
+- Serial numbers
+- Invoice number
+- Receipt availability
 
 The response is printed as formatted JSON.
 
@@ -796,10 +796,10 @@ The training-score file records the validation macro-F1 values and the selected 
 
 The stored training results show:
 
-Model	Validation Macro F1
-Logistic Regression	0.915371
-Random Forest	0.928686
-Extra Trees	0.928686
+Model Validation Macro F1
+Logistic Regression 0.915371
+Random Forest 0.928686
+Extra Trees 0.928686
 
 The selected model is:
 
@@ -823,21 +823,21 @@ The test dataset contains 75 claims from each class.
 
 The project requires:
 
-* Python
-* Node.js
-* Tesseract OCR
+- Python
+- Node.js
+- Tesseract OCR
 
 The Python backend uses packages corresponding to its imports, including:
 
-* Flask
-* Pandas
-* Scikit-learn
-* Joblib
-* Pillow
-* PyTesseract
-* PyMuPDF
-* Requests
-* Werkzeug
+- Flask
+- Pandas
+- Scikit-learn
+- Joblib
+- Pillow
+- PyTesseract
+- PyMuPDF
+- Requests
+- Werkzeug
 
 The frontend uses the packages listed in:
 
@@ -935,51 +935,51 @@ The script:
 The main claim-processing workflow is:
 
 Customer/Member
-      |
-      v
+|
+v
 Claim Information
-      |
-      v
+|
+v
 Flask API
-      |
-      +--------------------+
-      |                    |
-      v                    v
-Python ML Model       Warranty Rules
-      |                    |
-      v                    v
-Python Prediction     Rule Evaluation
-      |                    |
-      +---------+----------+
-                |
-                v
-        Final Recommendation
-                |
-       +--------+--------+
-       |        |        |
-       v        v        v
-     Valid   Invalid   Manual Review
-                         |
-                         v
-                    Human Review
+|
++--------------------+
+| |
+v v
+Python ML Model Warranty Rules
+| |
+v v
+Python Prediction Rule Evaluation
+| |
++---------+----------+
+|
+v
+Final Recommendation
+|
++--------+--------+
+| | |
+v v v
+Valid Invalid Manual Review
+|
+v
+Human Review
 
 The GTM path is:
 
 Saved Claim
-     |
-     v
+|
+v
 Claim Summary Card
-     |
-     v
+|
+v
 GTM Image Model
-     |
-     v
+|
+v
 GTM Probabilities
-     |
-     v
+|
+v
 Stored GTM Result
-     |
-     v
+|
+v
 Python/GTM Disagreement Check
 
 ⸻
@@ -1058,44 +1058,44 @@ AiProject/
 ├── AssureX_Sample_Receipt.png
 │
 ├── backend/
-│   ├── app.py
-│   ├── card_service.py
-│   ├── check_invoices.py
-│   ├── claim_logic.py
-│   ├── create_member.py
-│   ├── database.py
-│   ├── policies.py
-│   ├── receipt_ocr.py
-│   ├── try_claim.py
-│   ├── try_receipt.py
-│   ├── try_review.py
-│   ├── gtm_test.html
-│   │
-│   └── gtm_model/
-│       ├── model.json
-│       ├── metadata.json
-│       └── weights.bin
+│ ├── app.py
+│ ├── card_service.py
+│ ├── check_invoices.py
+│ ├── claim_logic.py
+│ ├── create_member.py
+│ ├── database.py
+│ ├── policies.py
+│ ├── receipt_ocr.py
+│ ├── try_claim.py
+│ ├── try_receipt.py
+│ ├── try_review.py
+│ ├── gtm_test.html
+│ │
+│ └── gtm_model/
+│ ├── model.json
+│ ├── metadata.json
+│ └── weights.bin
 │
 ├── frontend/
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── vite.config.js
-│   └── src/
-│       ├── App.jsx
-│       ├── main.jsx
-│       ├── api/
-│       ├── components/
-│       ├── pages/
-│       └── styles/
+│ ├── package.json
+│ ├── package-lock.json
+│ ├── vite.config.js
+│ └── src/
+│ ├── App.jsx
+│ ├── main.jsx
+│ ├── api/
+│ ├── components/
+│ ├── pages/
+│ └── styles/
 │
 └── output/
-    ├── all_claims.csv
-    ├── train.csv
-    ├── validation.csv
-    ├── test.csv
-    ├── prior_claims.csv
-    ├── training_scores.json
-    └── assurex_python_model.joblib
+├── all_claims.csv
+├── train.csv
+├── validation.csv
+├── test.csv
+├── prior_claims.csv
+├── training_scores.json
+└── assurex_python_model.joblib
 
 ⸻
 
@@ -1180,19 +1180,19 @@ The training target is not used as a model input.
 
 AssureX Claim Engine combines:
 
-* Flask backend
-* React frontend
-* SQLite database
-* Synthetic warranty dataset generation
-* Scikit-learn classification
-* Random Forest model
-* Warranty rule engine
-* OCR
-* Google Teachable Machine
-* Claim Summary Card generation
-* Member authentication
-* Manual review
-* Duplicate invoice detection
+- Flask backend
+- React frontend
+- SQLite database
+- Synthetic warranty dataset generation
+- Scikit-learn classification
+- Random Forest model
+- Warranty rule engine
+- OCR
+- Google Teachable Machine
+- Claim Summary Card generation
+- Member authentication
+- Manual review
+- Duplicate invoice detection
 
 The system provides an end-to-end prototype for analysing warranty claims using both machine-learning predictions and deterministic warranty rules.
 
@@ -1201,24 +1201,36 @@ The Python model operates on structured claim information, while the GTM model o
 The project is designed around the principle that machine-learning predictions should be accompanied by explicit rule-based checks rather than being treated as the sole source of the claim decision.
 
 ---
+
 # FILE 2 — `AI_USAGE.md`
+
 This needs to be handled differently.
-The SRS says the AI declaration should contain the **tool name, purpose, affected modules, student modifications, and testing performed by the students**.  [oai_citation:2‡AssureX Claim Engine-NextWave AI and ML_SRS.pdf](sediment://file_00000000762c8246b22b985d6438fd49)
+The SRS says the AI declaration should contain the **tool name, purpose, affected modules, student modifications, and testing performed by the students**. [oai_citation:2‡AssureX Claim Engine-NextWave AI and ML_SRS.pdf](sediment://file_00000000762c8246b22b985d6438fd49)
 I will **not invent AI usage for your team**. The ZIP does not contain an `AI_USAGE.md`, and I do not have evidence that ChatGPT or another AI generated the existing source code.
 For the work we are doing in this conversation, the truthful declaration is documentation assistance only:
-```markdown
+
+````markdown
 # AI USAGE DECLARATION
+
 ## Project
+
 AssureX Claim Engine
+
 ## Team
-NextWave AI & ML
----
+
+## NextWave AI & ML
+
 # 1. AI TOOL USED
+
 ### Tool
+
 ChatGPT
+
 ### Purpose of Use
+
 ChatGPT was used to assist with project documentation.
 The assistance included:
+
 - Reviewing the project structure
 - Reading and interpreting the project requirements
 - Organizing technical information into documentation
@@ -1230,10 +1242,14 @@ The assistance included:
 - Describing the existing Google Teachable Machine integration
 - Preparing README documentation
 - Preparing technical documentation based on the existing source code
+
 ---
+
 # 2. MODULES AFFECTED
+
 The AI assistance was used for documentation covering the existing project modules, including:
-```text
+
+````text
 01_generate_dataset.py
 02_train_python_model.py
 backend/app.py
@@ -2167,4 +2183,14 @@ The application uses SQLite for persistence.
 
 The frontend contains the defined application routes and components.
 
-The documentation in this file describes the functionality contained in the supplied project source.
+33.MEMBERS
+
+STUDENT ID      |      NAME
+Student1604472     Abdulrahman Abass
+Student1699740     Adesina Oghenegetega Oyibocha
+Student1699227     Egbu Deborah Njideka
+Student1593568     Ogene Micheal Chinecherem
+Student1704211     Kalu Derrick Kess
+Student1726266     Henry Chukwuebuka Ezeji
+````
+````
